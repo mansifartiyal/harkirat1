@@ -42,13 +42,13 @@ app.post("/sign", function(req, res) {
         });
     }
 
-    var token = jwt.sign({ username: username }, jwtPassword);
+    const token = jwt.sign({ username: username }, jwtPassword);
     return res.json({ // Correct 'json' method
         token,
     });
 });
 
-app.get("/sign", function(req, res) {
+app.get("/signin", function(req, res) {
     const token = req.headers.authorization;
     try {
         const decoded = jwt.verify(token, jwtPassword);
