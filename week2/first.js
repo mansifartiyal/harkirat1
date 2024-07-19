@@ -1,7 +1,13 @@
 const express = require("express");
 const app = express();
 app.use(express.json());
+let count = 0;
 
+function countRequest(req , res ,next){
+    count ++;
+    console.log("number of request"+count);
+    next();
+}
 
 function middleWareTicket(req,res,next){
     const ticket = req.body.ticket;
@@ -21,6 +27,7 @@ function middleWareAge(req,res,next){
         return res.status(403).send("invalid");
     }
 }
+app.use(countRequest);
 app.use(middleWareTicket);
 
 
